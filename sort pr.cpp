@@ -53,7 +53,11 @@ private:
     }
 
 public:
+<<<<<<< Updated upstream
     // Основная функция для тестирования всех алгоритмов
+=======
+    // Основная функция для тестирования всех алгоритмов1 11
+>>>>>>> Stashed changes
     void testAllSorts(vector<int>& nums) {
         vector<int> original = nums;
         
