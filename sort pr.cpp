@@ -1,12 +1,5 @@
-#include <iostream>
-#include <vector>
-#include <chrono>
-#include <random>
-#include <algorithm>
-#include <functional>
-using namespace std;
-using namespace std::chrono;
 
+<<<<<<< HEAD
 class Solution {
 private:
     // Bubble Sort
@@ -19,7 +12,7 @@ private:
                     swap(nums[currInd], nums[currInd + 1]);
     }
 
-    // Selection Sort
+    // Selection Sort 1
     void selectionSort(vector<int> &nums) {
         int minInd, startInd, currInd, size = nums.size();
         if (size <= 1) return;
@@ -142,3 +135,5 @@ int main() {
     
     return 0;
 }
+=======
+>>>>>>> 2eeb225d9ce0b9bccba5ee3181a2007a098938e1
