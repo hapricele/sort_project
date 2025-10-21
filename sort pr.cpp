@@ -53,7 +53,7 @@ private:
     }
 
 public:
-    // Основная функция для тестирования всех алгоритмов
+    // Основная функция для тестирования всех алгоритмов1 211312321
     void testAllSorts(vector<int>& nums) {
         vector<int> original = nums;
         
