@@ -1,144 +1,137 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 #include <chrono>
-#include <random>
-#include <algorithm>
-#include <functional>
-using namespace std;
-using namespace std::chrono;
 
-class Solution {
-private:
-    // Bubble Sort
-    void bubbleSort(vector<int> &nums) {
-        int endInd, currInd, size = nums.size();
-        if (size <= 1) return;
-        for (endInd = size - 1; endInd; endInd--)
-            for (currInd = 0; currInd < endInd; currInd++)
-                if (nums[currInd] > nums[currInd + 1])
-                    swap(nums[currInd], nums[currInd + 1]);
-    }
-
-    // Selection Sort
-    void selectionSort(vector<int> &nums) {
-        int minInd, startInd, currInd, size = nums.size();
-        if (size <= 1) return;
-        for (startInd = 0; startInd < size - 1; startInd++) {
-            for (currInd = startInd + 1, minInd = startInd; currInd < size; currInd++)
-                if (nums[minInd] > nums[currInd])
-                    minInd = currInd;
-            if (minInd != startInd)
-                swap(nums[startInd], nums[minInd]);
-        }
-    }
-
-    // Merge Sort helpers vers 1
-    void outPlaceMerge(vector<int> &nums, int low, int mid, int high) {
-        if (low >= high) return;
-        int l = low, r = mid + 1, k = 0, size = high - low + 1;
-        vector<int> sorted(size, 0);
-        while (l <= mid and r <= high)
-            sorted[k++] = nums[l] < nums[r] ? nums[l++] : nums[r++];
-        while (l <= mid) 
-            sorted[k++] = nums[l++];
-        while (r <= high) 
-            sorted[k++] = nums[r++];
-        for (k = 0; k < size; k++)
-            nums[k + low] = sorted[k];
-    }
-
-    void mergeSort(vector<int> &nums, int low, int high) {
-        if (low >= high) return;
-        int mid = (high - low) / 2 + low;
-        mergeSort(nums, low, mid);
-        mergeSort(nums, mid + 1, high);
-        outPlaceMerge(nums, low, mid, high);
-    }
-
-    void mergeSort(vector<int> &nums) {
-        mergeSort(nums, 0, nums.size() - 1);
-    }
-
-public:
-    // Основная функция для тестирования всех алгоритмов
-    void testAllSorts(vector<int>& nums) {
-        vector<int> original = nums;
-        
-        cout << "Original array (first 10): ";
-        for (int i = 0; i < min(10, (int)original.size()); i++) {
-            cout << original[i] << " ";
-        }
-        if (original.size() > 10) cout << "...";
-        cout << endl;
-
-        testSort("Bubble Sort", [this](vector<int>& arr) { bubbleSort(arr); }, original);
-        testSort("Selection Sort", [this](vector<int>& arr) { selectionSort(arr); }, original);
-        testSort("Merge Sort", [this](vector<int>& arr) { mergeSort(arr); }, original);
-        testSort("std::sort", [](vector<int>& arr) { sort(arr.begin(), arr.end()); }, original);
-    }
-
-private:
-    void testSort(const string& name, function<void(vector<int>&)> sortFunc, vector<int>& nums) {
-        vector<int> copy = nums;
-        auto start = high_resolution_clock::now();
-        sortFunc(copy);
-        auto end = high_resolution_clock::now();
-        
-        auto duration = duration_cast<microseconds>(end - start);
-        bool isSorted = true;
-        for (int i = 1; i < copy.size(); i++) {
-            if (copy[i] < copy[i-1]) {
-                isSorted = false;
-                break;
+void bubbleSort(std::vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n-1; ++i) {
+        bool swapped = false;
+        for (int j = 0; j < n-i-1; ++j) {
+            if (arr[j] > arr[j+1]) {
+                std::swap(arr[j], arr[j+1]);
+                swapped = true;
             }
         }
-        
-        cout << name << ": " << duration.count() << " μs, Sorted: " 
-             << (isSorted ? "Yes" : "No") << endl;
+        if (!swapped) break;
     }
+}
 
-public:
-    vector<int> generateTestData(int size, const string& type) {
-        vector<int> data(size);
-        random_device rd;
-        mt19937 gen(rd());
-        
-        if (type == "random") {
-            uniform_int_distribution<> dis(1, 10000);
-            for (int i = 0; i < size; i++) data[i] = dis(gen);
-        } 
-        else if (type == "sorted") {
-            for (int i = 0; i < size; i++) data[i] = i;
+void selectionSort(std::vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n-1; ++i) {
+        int minIdx = i;
+        for (int j = i+1; j < n; ++j) {
+            if (arr[j] < arr[minIdx]) {
+                minIdx = j;
+            }
         }
-        else if (type == "reversed") {
-            for (int i = 0; i < size; i++) data[i] = size - i;
+        std::swap(arr[i], arr[minIdx]);
+    }
+}
+
+void merge(std::vector<int>& arr, int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+    
+    std::vector<int> L(n1), R(n2);
+    
+    for (int i = 0; i < n1; ++i)
+        L[i] = arr[left + i];
+    for (int j = 0; j < n2; ++j)
+        R[j] = arr[mid + 1 + j];
+    
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
         }
-        
-        return data;
+        k++;
     }
+    
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+    
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
 
-    void comprehensiveTest() {
-        cout << "=== COMPREHENSIVE SORTING TEST ===" << endl << endl;
-        
-        vector<int> testData = generateTestData(1000, "random");
-        testAllSorts(testData);
-    }
+void mergeSortHelper(std::vector<int>& arr, int left, int right) {
+    if (left >= right) return;
+    
+    int mid = left + (right - left) / 2;
+    mergeSortHelper(arr, left, mid);
+    mergeSortHelper(arr, mid+1, right);
+    merge(arr, left, mid, right);
+}
 
-    vector<int> sortArray(vector<int>& nums) {
-        vector<int> result = nums;
-        mergeSort(result);
-        return result;
-    }
-};
+void mergeSort(std::vector<int>& arr) {
+    mergeSortHelper(arr, 0, arr.size()-1);
+}
 
 int main() {
-    Solution solution;
-    solution.comprehensiveTest();
+    const int SIZE = 10000;
+    std::vector<int> original(SIZE);
     
-    // Простой тест
-    vector<int> simpleTest = {5, 2, 8, 1, 9, 3};
-    cout << endl << "=== SIMPLE TEST ===" << endl;
-    solution.testAllSorts(simpleTest);
-    
+    srand(time(0));
+    for (int i = 0; i < SIZE; ++i) {
+        original[i] = rand() % 10000;
+    }
+
+    std::cout << "Original array (first 10): ";
+    for (int i = 0; i < 10; ++i) {
+        std::cout << original[i] << " ";
+    }
+    std::cout << "\n\n";
+
+    std::vector<int> arr;
+
+    // Bubble Sort
+    arr = original;
+    auto start = std::chrono::high_resolution_clock::now();
+    bubbleSort(arr);
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "Bubble Sort (first 10): ";
+    for (int i = 0; i < 10; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << "\nTime: " << elapsed.count() << " seconds\n\n";
+
+    // Selection Sort
+    arr = original;
+    start = std::chrono::high_resolution_clock::now();
+    selectionSort(arr);
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = end - start;
+    std::cout << "Selection Sort (first 10): ";
+    for (int i = 0; i < 10; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << "\nTime: " << elapsed.count() << " seconds\n\n";
+
+    // Merge Sort
+    arr = original;
+    start = std::chrono::high_resolution_clock::now();
+    mergeSort(arr);
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = end - start;
+    std::cout << "Merge Sort (first 10): ";
+    for (int i = 0; i < 10; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << "\nTime: " << elapsed.count() << " seconds\n\n";
+
     return 0;
 }
