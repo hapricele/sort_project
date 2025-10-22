@@ -32,7 +32,7 @@ private:
         }
     }
 
-    // Merge Sort helpers
+    // Merge Sort helpers vers 1
     void outPlaceMerge(vector<int> &nums, int low, int mid, int high) {
         if (low >= high) return;
         int l = low, r = mid + 1, k = 0, size = high - low + 1;
