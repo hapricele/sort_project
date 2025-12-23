@@ -1,128 +1,128 @@
-# Sorting Algorithms Project
+# Проект алгоритмов сортировки
 
-## Overview
-This is a collaborative project by students of group AA-24-08 that implements and compares three fundamental sorting algorithms: **Bubble Sort**, **Selection Sort**, and **Merge Sort**. The project tests these algorithms on different types of datasets and measures their performance.
+## Описание
+Это совместный проект студентов группы АА-24-08, который реализует и сравнивает три фундаментальных алгоритма сортировки: **Сортировка пузырьком**, **Сортировка выбором** и **Сортировка слиянием**. Проект тестирует эти алгоритмы на различных типах наборов данных и измеряет их производительность.
 
-## Algorithms Implemented
+## Реализованные алгоритмы
 
-### 1. Bubble Sort
-- **Time Complexity**: O(n²) worst/average case, O(n) best case
-- **Space Complexity**: O(1)
-- **Description**: Compares adjacent elements and swaps them if they're in the wrong order. Repeats until the array is sorted.
-- **Best for**: Educational purposes, small datasets
+### 1. Сортировка пузырьком
+- **Временная сложность**: O(n²) в худшем/среднем случае, O(n) в лучшем случае
+- **Пространственная сложность**: O(1)
+- **Описание**: Сравнивает соседние элементы и обменивает их, если они находятся в неправильном порядке. Повторяет процесс до полной сортировки массива.
+- **Лучше всего для**: Образовательных целей, малые наборы данных
 
-### 2. Selection Sort
-- **Time Complexity**: O(n²) in all cases
-- **Space Complexity**: O(1)
-- **Description**: Finds the minimum element and places it at the beginning. Repeats for remaining unsorted portion.
-- **Best for**: Small to medium datasets, minimal memory usage
+### 2. Сортировка выбором
+- **Временная сложность**: O(n²) во всех случаях
+- **Пространственная сложность**: O(1)
+- **Описание**: Находит минимальный элемент и помещает его в начало. Повторяет для оставшейся несортированной части.
+- **Лучше всего для**: Малые и средние наборы данных, минимальное использование памяти
 
-### 3. Merge Sort
-- **Time Complexity**: O(n log n) in all cases
-- **Space Complexity**: O(n)
-- **Description**: Divide-and-conquer approach. Divides array into halves, recursively sorts them, then merges the sorted halves.
-- **Best for**: Large datasets, guaranteed O(n log n) performance
+### 3. Сортировка слиянием
+- **Временная сложность**: O(n log n) во всех случаях
+- **Пространственная сложность**: O(n)
+- **Описание**: Подход «разделяй и властвуй». Делит массив на половины, рекурсивно сортирует их, затем объединяет отсортированные половины.
+- **Лучше всего для**: Большие наборы данных, гарантированная производительность O(n log n)
 
-## Project Structure
+## Структура проекта
 
 ```
 sort_project/
-├── sortingproject.cpp          # Main C++ program
-├── array1_integers_0_to_1000.txt       # Test dataset 1: integers 0-1000
-├── array2_integers_-1000_to_1000.txt   # Test dataset 2: integers -1000 to 1000
-├── array3_mixed_0_to_1000.txt          # Test dataset 3: mixed float/int 0-1000
-├── array4_mixed_-1000_to_1000.txt      # Test dataset 4: mixed float/int -1000 to 1000
-└── README.md                    # This file
+├── sortingproject.cpp                    # Основная программа на C++
+├── array1_integers_0_to_1000.txt         # Тестовый набор 1: целые числа 0-1000
+├── array2_integers_-1000_to_1000.txt     # Тестовый набор 2: целые числа -1000 до 1000
+├── array3_mixed_0_to_1000.txt            # Тестовый набор 3: смешанные float/int 0-1000
+├── array4_mixed_-1000_to_1000.txt        # Тестовый набор 4: смешанные float/int -1000 до 1000
+└── README.md                             # Этот файл
 ```
 
-## How to Compile and Run
+## Как скомпилировать и запустить
 
-### Prerequisites
-- C++ compiler (g++, clang, or MSVC)
-- Standard C++ library
+### Требования
+- Компилятор C++ (g++, clang или MSVC)
+- Стандартная библиотека C++
 
-### Compilation
+### Компиляция
 ```bash
 g++ -o sortingproject sortingproject.cpp
 ```
 
-### Execution
+### Запуск
 ```bash
 ./sortingproject
 ```
 
-The program will automatically test all three algorithms on all four datasets and display:
-- Number of elements in each dataset
-- First 10 elements of the dataset
-- Execution time for each algorithm (in ms or μs)
-- Verification that the sorted result is correct
+Программа автоматически протестирует все три алгоритма на всех четырёх наборах данных и выведет:
+- Количество элементов в каждом наборе данных
+- Первые 10 элементов набора данных
+- Время выполнения каждого алгоритма (в мс или мкс)
+- Проверку корректности отсортированного результата
 
-## Features
+## Особенности
 
-- **Multiple Data Structures**: Works with both `std::list` and `std::forward_list`
-- **Performance Measurement**: Uses high-resolution clock to measure execution time
-- **Data Validation**: Includes functions to verify that arrays are correctly sorted
-- **Flexible Input**: Parses CSV-formatted data files with both integer and floating-point values
-- **Comprehensive Testing**: Tests on four different datasets with varying characteristics
+- **Множественные структуры данных**: Работает со списками `std::list` и `std::forward_list`
+- **Измерение производительности**: Использует высокоточные часы для измерения времени выполнения
+- **Валидация данных**: Включает функции для проверки корректности сортировки массивов
+- **Гибкий ввод**: Парсит CSV-файлы с целыми числами и значениями с плавающей точкой
+- **Комплексное тестирование**: Тестирует на четырёх различных наборах данных с разными характеристиками
 
-## Team Members
-- Малышева (Malysheva)
-- Грицкевича (Gritskvich)
-- Озерова (Ozerova)
-- Зернина (Zernina)
+## Члены команды
+- Малышева
+- Грицкевич
+- Озерова
+- Зернина
 
-## Data Files
+## Файлы данных
 
-### Dataset Characteristics
+### Характеристики наборов данных
 
 1. **array1_integers_0_to_1000.txt**
-   - Type: Positive integers
-   - Range: 0-1000
-   - Properties: Pre-generated random integers
+   - Тип: Положительные целые числа
+   - Диапазон: 0-1000
+   - Свойства: Предварительно сгенерированные случайные целые числа
 
 2. **array2_integers_-1000_to_1000.txt**
-   - Type: Integers
-   - Range: -1000 to 1000
-   - Properties: Both positive and negative values
+   - Тип: Целые числа
+   - Диапазон: -1000 до 1000
+   - Свойства: Как положительные, так и отрицательные значения
 
 3. **array3_mixed_0_to_1000.txt**
-   - Type: Mixed integers and floating-point numbers
-   - Range: 0-1000
-   - Properties: Realistic data with decimals
+   - Тип: Смешанные целые числа и числа с плавающей точкой
+   - Диапазон: 0-1000
+   - Свойства: Реалистичные данные с десятичными дробями
 
 4. **array4_mixed_-1000_to_1000.txt**
-   - Type: Mixed integers and floating-point numbers
-   - Range: -1000 to 1000
-   - Properties: Both positive/negative and decimal values
+   - Тип: Смешанные целые числа и числа с плавающей точкой
+   - Диапазон: -1000 до 1000
+   - Свойства: Как положительные/отрицательные значения, так и десятичные дроби
 
-## Performance Analysis
+## Анализ производительности
 
-The program outputs execution times for each algorithm on each dataset, allowing for empirical comparison:
+Программа выводит времена выполнения каждого алгоритма на каждом наборе данных, что позволяет провести эмпирическое сравнение:
 
-- **Bubble Sort**: Slowest on large datasets, good for demonstration
-- **Selection Sort**: Middle ground, consistent O(n²) performance
-- **Merge Sort**: Fastest on large datasets, optimal for production use
+- **Сортировка пузырьком**: Самая медленная на больших наборах данных, хороша для демонстрации
+- **Сортировка выбором**: Промежуточный вариант, стабильная производительность O(n²)
+- **Сортировка слиянием**: Самая быстрая на больших наборах данных, оптимальна для производства
 
-## Code Organization
+## Организация кода
 
-- **Input Functions**: `readListFromFile()`, `readForwardListFromFile()`
-- **Sorting Functions**: `bubbleSortList()`, `selectionSortList()`, `mergeSortFL()`
-- **Utility Functions**: `printFirst()`, `isSortedList()`, `isSortedFL()`
-- **Main Test Function**: `testFile()`
+- **Функции ввода**: `readListFromFile()`, `readForwardListFromFile()`
+- **Функции сортировки**: `bubbleSortList()`, `selectionSortList()`, `mergeSortFL()`
+- **Вспомогательные функции**: `printFirst()`, `isSortedList()`, `isSortedFL()`
+- **Основная функция тестирования**: `testFile()`
 
-## Notes
+## Примечания
 
-- The program converts floating-point numbers to integers by truncating decimal places
-- Times are displayed in milliseconds (ms) for Bubble Sort and microseconds (μs) for other algorithms
-- All algorithms maintain stable sorting for identical elements within their constraints
+- Программа преобразует числа с плавающей точкой в целые числа путём усечения десятичных мест
+- Времена отображаются в миллисекундах (мс) для сортировки пузырьком и микросекундах (мкс) для остальных алгоритмов
+- Все алгоритмы сохраняют стабильность сортировки для одинаковых элементов в пределах их ограничений
 
-## Future Improvements
+## Будущие улучшения
 
-- Implement additional sorting algorithms (QuickSort, HeapSort)
-- Add command-line argument support for custom test files
-- Create visualization of sorting process
-- Implement parallel sorting for multi-threaded comparison
+- Реализация дополнительных алгоритмов сортировки (QuickSort, HeapSort)
+- Добавление поддержки аргументов командной строки для пользовательских файлов тестирования
+- Создание визуализации процесса сортировки
+- Реализация параллельной сортировки для сравнения с многопоточностью
 
-## License
+## Лицензия
 
-This is an educational project created for learning purposes.
+Это образовательный проект, созданный в целях обучения.
